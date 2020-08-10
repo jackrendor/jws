@@ -1,0 +1,6 @@
+#!/bin/bash
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname $SCRIPT`
+# If you didn't setup a virtualenv, let's still allow you to run the script
+source $SCRIPTPATH/venv/bin/activate 2> /dev/null
+python3 $SCRIPTPATH/jws.py $@
