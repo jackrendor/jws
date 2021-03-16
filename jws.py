@@ -5,6 +5,10 @@ import argparse
 from bs4 import BeautifulSoup, Comment
 import string
 
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
 MAIN_DOMAIN = ""
 analyzed_links = []
 
@@ -102,7 +106,7 @@ def recursive_scrape(session, url, headers, javascript, depth, external):
 
 def main():
     args = parse_them_all()
-    session = HTMLSession()
+    session = HTMLSession(verify=False)
     headers = set_header(args.header)
     print("Following external links:", args.external_links, file=stderr)
     global MAIN_DOMAIN
